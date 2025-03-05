@@ -1,10 +1,10 @@
-FROM alpine:latest AS builder
+FROM golang:1.24.1-alpine3.21 AS builder
 
 WORKDIR /app
 
 COPY . .
 
-RUN apt-get update && apt-get install -y golang-go && go mod init dada/go && go build -ldflags "-s -w" olamundo.go
+RUN  go build olamundo.go
 
 FROM alpine:latest
 
