@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN  go build olamundo.go
+RUN  go build -ldflags "-s -w" olamundo.go
 
 FROM alpine:latest
 
