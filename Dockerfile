@@ -1,4 +1,4 @@
-FROM golang:1.24.1-alpine3.21 AS builder
+FROM golang:alpine AS builder
 
 WORKDIR /app
 
@@ -6,10 +6,10 @@ COPY . .
 
 RUN  go build -ldflags "-s -w" olamundo.go
 
-FROM alpine:latest
+FROM scratch
 
 WORKDIR /app
 
-COPY --from=builder /app .
+COPY --from=builder /app /app
 
 CMD [ "./olamundo" ]
